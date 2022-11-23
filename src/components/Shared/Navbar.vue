@@ -74,7 +74,7 @@
               />
             </svg>
           </a>
-          <ul class="p-2">
+          <ul class="p-2 bg-base-200 z-50">
             <li><a>Submenu 1</a></li>
             <li><a>Submenu 2</a></li>
           </ul>
@@ -83,7 +83,7 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <div class="form-control flex-row items-center">
+      
         <div class="w-28 h-8 flex items-center">
           <p v-if="!darkmode" class="mx-1">🌞</p>
           <input
@@ -94,12 +94,7 @@
             class="toggle toggle-warning"
           />
           <p v-if="darkmode" class="mx-1">🌛</p>
-        </div>
-        <input
-          type="text"
-          placeholder="Search"
-          class="input input-bordered rounded-sm mx-2"
-        />
+       
       </div>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">

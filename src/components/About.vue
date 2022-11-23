@@ -1,7 +1,6 @@
 <template>
     <div>
-    
-      <button class="btn">{{name}}</button>
+      <h1 class="text-red-500"> {{name}} </h1>
     </div>
 </template>
 
