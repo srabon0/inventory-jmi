@@ -138,17 +138,15 @@
           </div>
         </div>
 
-        <section
-          class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-3 xl:grid-cols-4"
-        >
-          <div v-for="(item, index) in 10" :key="index">
-            <ProductCard></ProductCard>
-          </div>
+        <section class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-3 xl:grid-cols-3">
+         
+            <ProductCard v-for="(item, index) in allProducts" :NAME_S="srabon" :ITEM="item" :Key="index" />
+        
 
           <!-- pagination start -->
           <!-- pagination end -->
         </section>
-        <div class="btn-group">
+        <div class="btn-group mt-10">
           <button class="btn btn-outline">1</button>
           <button class="btn btn-outline">2</button>
           <button class="btn btn-disabled">...</button>
@@ -163,22 +161,17 @@
 <script setup>
 import ProductCard from "../components/Home/ProductCard.vue";
 import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, ref,defineProps } from "vue";
 import { useStore } from "vuex";
 import Sliders from "./Home/Sliders.vue";
 const router = useRouter();
 const store = useStore();
-const newNameInput = ref("");
-const isName = computed(() => {
-  return store.state.name;
+const allProducts = computed(() => {
+  console.log("loaded",store.state.products);
+  return store.state.products;
 });
-
-const newName = () => {
-  store.dispatch("saveName", newNameInput.value);
-  newNameInput.value = "";
-  router.push("/about");
-};
 const dark = false;
+const srabon ="srabon"
 </script>
 
 <style></style>
