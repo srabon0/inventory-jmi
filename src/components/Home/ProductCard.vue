@@ -6,14 +6,20 @@
     <p>{{singleItem?.description}}</p>
     <div class="card-actions flex justify-between">
       <h1 class="card-title">$220</h1>
-      <button class="btn btn-primary">Buy Now </button>
+      <div class="flex flex-col-reverse gap-4">
+        <button  class="btn btn-primary btn-sm">Add To Cart </button>
+      <button @click="seeDetails" class="btn btn-secondary btn-sm">View Deails </button>
     </div>
+      </div>
   </div>
 </div>
 </template>
 
 <script setup>
 import { defineProps,onMounted,toRefs } from 'vue';
+import { useRouter,useRoute } from 'vue-router';
+const router=useRouter();
+const route = useRoute()
 const props=defineProps(['ITEM'])
 // export default {
 //   name: "ShoppingCartProductCard",
@@ -28,6 +34,14 @@ const props=defineProps(['ITEM'])
 // };
 const singleItem =  props.ITEM
 
+function seeDetails(){
+
+  router.push(`/product/${singleItem._id}`)
+
+}
+
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+</style>

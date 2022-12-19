@@ -138,20 +138,19 @@
           </div>
         </div>
 
-        <section class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-3 xl:grid-cols-3">
+        <section v-if="!isLoading" class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-3 xl:grid-cols-3">
          
-            <ProductCard v-for="(item, index) in allProducts" :NAME_S="srabon" :ITEM="item" :Key="index" />
+            <ProductCard v-for="(item, index) in allProducts" :ITEM="item" :Key="index" />
         
 
           <!-- pagination start -->
           <!-- pagination end -->
         </section>
+        <section v-else>Loading</section>
         <div class="btn-group mt-10">
-          <button class="btn btn-outline">1</button>
-          <button class="btn btn-outline">2</button>
-          <button class="btn btn-disabled">...</button>
-          <button class="btn">99</button>
-          <button class="btn">100</button>
+          
+          <button @click="setPage(index)" v-for="item,index in totalPages" class="btn btn-outline">{{ index+1 }}</button>
+         
         </div>
       </div>
     </section>
@@ -161,17 +160,34 @@
 <script setup>
 import ProductCard from "../components/Home/ProductCard.vue";
 import { useRouter } from "vue-router";
-import { computed, ref,defineProps } from "vue";
+import { computed,defineProps,watch,ref,defineEmits} from "vue";
 import { useStore } from "vuex";
 import Sliders from "./Home/Sliders.vue";
 const router = useRouter();
 const store = useStore();
-const allProducts = computed(() => {
-  console.log("loaded",store.state.products);
-  return store.state.products;
+const currentPage = ref(0)
+const props = defineProps(['PAGE_COUNT','ALL_PRODUCTS','IS_LOADING'])
+const emits = defineEmits(['setCurrentPage'])
+const totalPages = computed(() => {
+ 
+  return props.PAGE_COUNT;
 });
+const allProducts = props.ALL_PRODUCTS
+const setPage = (page)=>{
+  console.log("setting page" , page);
+  return emits('setCurrentPage',page);
+
+}
+const isLoading = props.IS_LOADING
+
 const dark = false;
-const srabon ="srabon"
+
+watch(allProducts, (currentValue) => {
+  console.log("this is new current page",currentValue);
+  
+});
+
+
 </script>
 
-<style></style>
+<style scoped></style>

@@ -79,7 +79,7 @@
             <li><a>Submenu 2</a></li>
           </ul>
         </li>
-        <li><a>Item 3</a></li>
+        <li> <router-link to="/payment">Payment </router-link></li>
       </ul>
     </div>
     <div class="navbar-end">

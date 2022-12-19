@@ -10,7 +10,8 @@ const store= createStore({
             state.name = value
         },
         SET_PRODUCTS(state,productsData){
-            state.products= productsData
+            console.log("setting new products")
+            state.products = productsData
         }
     },
     actions:{
@@ -20,6 +21,9 @@ const store= createStore({
         insertProduct({commit},productsData){
             commit("SET_PRODUCTS",productsData)
         }
+    },
+    getters:{
+        getAllProducts:(state)=>state.products
     }
 })
 export default store
